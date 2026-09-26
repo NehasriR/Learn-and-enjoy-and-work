@@ -22,11 +22,13 @@ import {
   Video,
   Users,
   Menu,
-  X
+  X,
+  FileCode2
 } from 'lucide-react';
 
 export type TabType =
   | 'dashboard'
+  | 'cheatsheet'
   | 'roadmap'
   | 'study_plan'
   | 'diagnostics'
@@ -61,6 +63,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       group: 'Preparation',
       items: [
         { id: 'dashboard' as TabType, label: 'Dashboard', icon: LayoutDashboard },
+        { id: 'cheatsheet' as TabType, label: 'Placement Cheat Sheet', icon: FileCode2 },
         { id: 'roadmap' as TabType, label: 'Roadmap', icon: Compass },
         { id: 'study_plan' as TabType, label: 'Daily Study Plan', icon: CalendarCheck },
         { id: 'diagnostics' as TabType, label: 'Where You Stand', icon: Target },

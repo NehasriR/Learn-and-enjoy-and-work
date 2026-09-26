@@ -48,6 +48,8 @@ import { SettingsView } from './components/SettingsView';
 import { OnboardingModal } from './components/OnboardingModal';
 import { AICoachModal } from './components/AICoachModal';
 import { BreakReminderModal } from './components/BreakReminderModal';
+import { AuthModal } from './components/AuthModal';
+import { CheatSheetView } from './components/CheatSheetView';
 import { Bot, Sparkles } from 'lucide-react';
 
 export default function App() {
@@ -65,6 +67,7 @@ export default function App() {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(!profile.isOnboarded);
   const [isCoachOpen, setIsCoachOpen] = useState(false);
   const [isBreakOpen, setIsBreakOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   // Sync state when storage changes
   useEffect(() => {
@@ -93,6 +96,8 @@ export default function App() {
         onOpenCoach={() => setIsCoachOpen(true)}
         onOpenBreak={() => setIsBreakOpen(true)}
         onOpenProfile={() => setCurrentTab('settings')}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenCheatSheet={() => setCurrentTab('cheatsheet')}
       />
 
       {/* Main Layout Container */}
@@ -121,6 +126,8 @@ export default function App() {
               onOpenCoach={() => setIsCoachOpen(true)}
             />
           )}
+
+          {currentTab === 'cheatsheet' && <CheatSheetView />}
 
           {currentTab === 'roadmap' && (
             <RoadmapView roadmap={roadmap} targetRole={profile.targetRole} />
@@ -214,6 +221,12 @@ export default function App() {
       <BreakReminderModal
         isOpen={isBreakOpen}
         onClose={() => setIsBreakOpen(false)}
+      />
+
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onSuccess={(updated) => setProfile(updated)}
       />
 
     </div>

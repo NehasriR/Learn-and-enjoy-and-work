@@ -10,7 +10,9 @@ import {
   RotateCcw,
   Sparkles,
   SlidersHorizontal,
-  ChevronDown
+  ChevronDown,
+  FileCode2,
+  LogIn
 } from 'lucide-react';
 import { UserProfile } from '../types';
 import { resetToDemo } from '../services/storage';
@@ -21,6 +23,8 @@ interface NavbarProps {
   onOpenCoach: () => void;
   onOpenBreak: () => void;
   onOpenProfile: () => void;
+  onOpenAuth?: () => void;
+  onOpenCheatSheet?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -28,6 +32,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCoach,
   onOpenBreak,
   onOpenProfile,
+  onOpenAuth,
+  onOpenCheatSheet,
 }) => {
   const [studyMinutes, setStudyMinutes] = useState<number>(() => {
     try {
@@ -152,6 +158,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden md:inline">Break</span>
           </button>
 
+          {/* Placement Master Cheat Sheet Quick Button */}
+          {onOpenCheatSheet && (
+            <button
+              onClick={onOpenCheatSheet}
+              title="Placement Master Cheat Sheet (DSA, SQL, System Design, STAR)"
+              className="hidden lg:flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-750 border border-slate-700/80 text-indigo-300 hover:text-white transition-colors text-xs font-semibold cursor-pointer"
+            >
+              <FileCode2 className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Cheat Sheet</span>
+            </button>
+          )}
+
           {/* AI Coach Trigger */}
           <button
             onClick={onOpenCoach}
@@ -160,6 +178,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Bot className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">AI Coach</span>
           </button>
+
+          {/* Modern Login & Sign Up Trigger */}
+          {onOpenAuth && (
+            <button
+              onClick={onOpenAuth}
+              title="Student Login / Sign Up"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-750 border border-indigo-500/40 text-slate-200 hover:text-white transition-all text-xs font-semibold cursor-pointer shadow-sm"
+            >
+              <LogIn className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="hidden sm:inline">{profile.isLoggedIn ? 'Account' : 'Sign In'}</span>
+            </button>
+          )}
 
           {/* Student Profile Quick View / Edit */}
           <button

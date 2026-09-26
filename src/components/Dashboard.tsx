@@ -29,7 +29,8 @@ import {
   Code,
   Layers,
   Building,
-  Target
+  Target,
+  FileCode2
 } from 'lucide-react';
 import { UserProfile, SkillDetail, StudyTask, DailyChallenge, StudyFriend } from '../types';
 import { toggleTask, completeDailyChallenge, addXp, recordActivityStreak } from '../services/storage';
@@ -346,6 +347,15 @@ export const Dashboard: React.FC<DashboardProps> = ({
               Interview Sprint
             </button>
           </div>
+
+          <button
+            onClick={() => onNavigate('cheatsheet')}
+            className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-indigo-300 hover:text-white border border-slate-700 text-xs font-semibold flex items-center space-x-1.5 cursor-pointer shadow-sm transition-all"
+            title="Open Placement Master Cheat Sheet"
+          >
+            <FileCode2 className="w-3.5 h-3.5 text-indigo-400" />
+            <span>Cheat Sheet</span>
+          </button>
 
           <button
             onClick={() => setShowConfigModal(true)}
@@ -889,49 +899,60 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   <div className="absolute top-2 right-2 z-10 hidden group-hover:flex">
                     {BlockActionControls}
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
                     <div
                       onClick={() => onNavigate('interview')}
-                      className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
+                      className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
                     >
                       <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold">
                         <Video className="w-4 h-4" />
                       </div>
                       <h3 className="font-bold text-sm text-white">Virtual Interview</h3>
-                      <p className="text-xs text-slate-400">Live technical & HR video simulation.</p>
+                      <p className="text-[11px] text-slate-400 leading-snug">Live technical & HR video simulation.</p>
+                    </div>
+
+                    <div
+                      onClick={() => onNavigate('cheatsheet')}
+                      className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2 group"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold group-hover:bg-indigo-500/20">
+                        <FileCode2 className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-bold text-sm text-white">Cheat Sheet</h3>
+                      <p className="text-[11px] text-slate-400 leading-snug">DSA, SQL, System Design & STAR.</p>
                     </div>
 
                     <div
                       onClick={() => onNavigate('projects')}
-                      className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
+                      className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
                     >
                       <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold">
                         <FolderGit2 className="w-4 h-4" />
                       </div>
                       <h3 className="font-bold text-sm text-white">Project Analyzer</h3>
-                      <p className="text-xs text-slate-400">30s, 1m, and 3m elevator pitches.</p>
+                      <p className="text-[11px] text-slate-400 leading-snug">30s, 1m, and 3m elevator pitches.</p>
                     </div>
 
                     <div
                       onClick={() => onNavigate('games')}
-                      className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
+                      className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
                     >
                       <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">
                         <Gamepad2 className="w-4 h-4" />
                       </div>
                       <h3 className="font-bold text-sm text-white">Learning Games</h3>
-                      <p className="text-xs text-slate-400">8 interactive gamified coding modules.</p>
+                      <p className="text-[11px] text-slate-400 leading-snug">8 interactive coding modules.</p>
                     </div>
 
                     <div
                       onClick={() => onNavigate('resume')}
-                      className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
+                      className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer space-y-2"
                     >
                       <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold">
                         <FileText className="w-4 h-4" />
                       </div>
                       <h3 className="font-bold text-sm text-white">Resume ATS Audit</h3>
-                      <p className="text-xs text-slate-400">Google XYZ formula bullet points.</p>
+                      <p className="text-[11px] text-slate-400 leading-snug">Google XYZ formula bullet points.</p>
                     </div>
                   </div>
                 </div>

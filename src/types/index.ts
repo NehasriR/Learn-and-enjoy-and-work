@@ -37,6 +37,8 @@ export interface UserProfile {
     workload: 'Light' | 'Moderate' | 'Heavy';
   };
   isOnboarded: boolean;
+  isLoggedIn?: boolean;
+  email?: string;
 }
 
 export interface SkillDetail {
